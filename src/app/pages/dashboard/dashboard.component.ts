@@ -1,11 +1,11 @@
-import { ComponentsModule } from './../../shared/index';
-import { CommonModule } from '@angular/common';
-import { Component, OnInit, NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { RouterModule, ActivatedRoute, Router, Routes } from '@angular/router';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { MainComponent } from './main/main.component';
-import { AdvancedComponent } from './advanced/advanced.component';
+import {ComponentsModule} from './../../shared/index';
+import {CommonModule} from '@angular/common';
+import {Component, CUSTOM_ELEMENTS_SCHEMA, NgModule, OnInit} from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {RouterModule, Routes} from '@angular/router';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {MainComponent} from './main/main.component';
+import {AdvancedComponent} from './advanced/advanced.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,7 +14,8 @@ import { AdvancedComponent } from './advanced/advanced.component';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
@@ -22,9 +23,9 @@ export class DashboardComponent implements OnInit {
 }
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'main' },
-  { path: 'main', component: MainComponent },
-  { path: 'advanced', component: AdvancedComponent },
+  {path: '', redirectTo: 'main', pathMatch: 'full'},
+  {path: 'main', component: MainComponent},
+  {path: 'advanced', component: AdvancedComponent},
 ];
 
 @NgModule({
@@ -41,4 +42,5 @@ export const routes: Routes = [
   imports: [RouterModule, CommonModule, ComponentsModule, ReactiveFormsModule, FormsModule, NgbModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class DashboardComponentModule { }
+export class DashboardComponentModule {
+}

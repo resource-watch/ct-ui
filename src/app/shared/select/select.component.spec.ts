@@ -1,7 +1,6 @@
 /* tslint:disable:no-unused-variable */
 
-import { TestBed, async } from '@angular/core/testing';
-import { SelectComponent } from './select.component';
+import {SelectComponent} from './select.component';
 
 describe('Component: Select', () => {
   it('should create an instance', () => {

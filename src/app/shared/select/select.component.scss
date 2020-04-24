@@ -1,6 +1,8 @@
 @import '../../../assets/styles/base.scss';
+
 .content-select {
   position: relative;
+
   &::after {
     background: transparent;
     border-bottom: 2px solid $color-2;
@@ -13,6 +15,7 @@
     transform: rotate(-45deg);
     width: 10px;
   }
+
   select {
     -moz-appearance: none;
     -webkit-appearance: none;

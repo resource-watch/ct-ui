@@ -1,8 +1,8 @@
-import { Subscription } from 'rxjs/Subscription';
-import { DashboardSelector } from './../../../selectors/dashboard';
-import { DashboardAction } from './../../../actions/dashboard';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import {Subscription} from 'rxjs';
+import {DashboardSelector} from './../../../selectors/dashboard';
+import {DashboardAction} from './../../../actions/dashboard';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 
 const now = new Date();
 
@@ -18,10 +18,14 @@ export class AdvancedComponent implements OnInit, OnDestroy {
   from: NgbDateStruct = {year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate() - 7}
   to: NgbDateStruct = {year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate()}
 
-  constructor(private dashboardAction: DashboardAction, private dashboardSelector: DashboardSelector) { }
+  constructor(private dashboardAction: DashboardAction, private dashboardSelector: DashboardSelector) {
+  }
 
   ngOnInit() {
-    this.dashboardSub = this.dashboardSelector.getAdvancedInformation().do(x => console.log(x)).subscribe(data => this.advancedInfo = data);
+    this.dashboardSub = this.dashboardSelector.getAdvancedInformation()
+      .subscribe(data => {
+        this.advancedInfo = data
+      });
     this.filter();
   }
 
@@ -29,9 +33,9 @@ export class AdvancedComponent implements OnInit, OnDestroy {
     this.dashboardSub.unsubscribe();
   }
 
-  filter(){
-    
-    this.dashboardAction.getAdvancedInformation(this.from , this.to);
+  filter() {
+
+    this.dashboardAction.getAdvancedInformation(this.from, this.to);
   }
 
 }

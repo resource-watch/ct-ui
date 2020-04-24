@@ -1,5 +1,5 @@
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 
 
 @Component({
@@ -13,13 +13,15 @@ export class ModalComponent implements OnInit {
   @Input() title
   @Output() close = new EventEmitter();
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal) {
+  }
 
   ngOnInit() {
   }
 
   open() {
-    this.modalService.open(this.modal, { windowClass: 'dialog' }).result.then(() => this.close.emit(), () => {});
+    this.modalService.open(this.modal, {windowClass: 'dialog'}).result.then(() => this.close.emit(), () => {
+    });
   }
 
 }

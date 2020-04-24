@@ -1,8 +1,8 @@
-import { IPlugin } from './../../models/plugin';
-import { Observable } from 'rxjs/Observable';
-import { PluginSelector } from './../../selectors/plugin';
-import { PluginAction } from './../../actions/plugin';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {IPlugin} from './../../models/plugin';
+import {Observable} from 'rxjs';
+import {PluginSelector} from './../../selectors/plugin';
+import {PluginAction} from './../../actions/plugin';
+import {Component, OnInit, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'app-plugins',
@@ -21,14 +21,15 @@ export class PluginsComponent implements OnInit {
   targetActive: boolean = false;
   config: any = {}
 
-  constructor(private pluginAction: PluginAction, private pluginSelector: PluginSelector) { }
+  constructor(private pluginAction: PluginAction, private pluginSelector: PluginSelector) {
+  }
 
   ngOnInit() {
     this.pluginAction.searchPlugins();
     this.plugins$ = this.pluginSelector.getPlugins();
   }
 
-  toggleActive(plugin, active){
+  toggleActive(plugin, active) {
     this.targetPlugin = plugin;
     this.targetActive = active;
     this.dialogToggle.open();
@@ -38,21 +39,21 @@ export class PluginsComponent implements OnInit {
     this.dialogFlush.open();
   }
 
-  closeToggleDialog(){
+  closeToggleDialog() {
     this.pluginAction.updatePlugin(this.targetPlugin._id, {active: this.targetActive});
   }
 
-  closeFlushDialog(){
+  closeFlushDialog() {
     this.pluginAction.flushCache();
   }
 
-  edit(plugin) {
+  edit(plugin) {
     this.targetPlugin = plugin;
     this.config = this.targetPlugin.config || {};
     this.editModal.open();
   }
 
-  saveEdit(){
+  saveEdit() {
     const newConfig = this.jsonEditor.nativeElement.get();
     this.pluginAction.updatePlugin(this.targetPlugin._id, {config: newConfig, active: this.targetPlugin.active});
   }

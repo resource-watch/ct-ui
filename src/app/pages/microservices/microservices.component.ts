@@ -1,48 +1,53 @@
-import { IMicroservice } from './../../models/microservice';
-import { Observable } from 'rxjs/Rx';
-import { MicroserviceSelector } from './../../selectors/microservice';
-import { MicroserviceAction } from './../../actions/microservice';
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
-import { Subject } from 'rxjs/Rx';
+import {IMicroservice} from './../../models/microservice';
+import {Subject, Subscription} from 'rxjs';
+import {MicroserviceSelector} from './../../selectors/microservice';
+import {MicroserviceAction} from './../../actions/microservice';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
 
 @Component({
   selector: 'app-microservices',
   templateUrl: './microservices.component.html',
   styleUrls: ['./microservices.component.scss'],
 })
+
 export class MicroservicesComponent implements OnInit, OnDestroy {
-  @ViewChild('mydatatable') table;
   microservices: IMicroservice[]
   microservicesFilter: IMicroservice[]
   microserviceSub: Subscription
-  filterText: string = ''
+  filterText = ''
 
   private searchMicroserviceStream = new Subject<string>()
 
-  constructor(private microserviceAction: MicroserviceAction, private microserviceSelector: MicroserviceSelector) { }
+  constructor(private microserviceAction: MicroserviceAction, private microserviceSelector: MicroserviceSelector) {
+  }
 
   ngOnInit() {
     this.microserviceAction.searchMicroservices();
-    this.microserviceSub = this.microserviceSelector.getMicroservices().map((data) => data.map((el) => Object.assign({}, el))).subscribe((data) => {
+    this.microserviceSub = this.microserviceSelector.getMicroservices().subscribe((data) => {
+      data = data.map((el) => Object.assign({}, el));
       this.microservices = data;
       this.filter(this.filterText);
     });
 
     this.searchMicroserviceStream
-      .debounceTime(300)
-      .distinctUntilChanged()  
-      .map(term => this.filterText = term)    
-      .subscribe(term => this.filter(term));
+      .pipe(
+        debounceTime(400),
+        distinctUntilChanged()
+      )
+      .subscribe(term => {
+        this.filterText = term
+        this.filter(term)
+      });
   }
 
-  private filter(term){
+  private filter(term) {
     this.microservicesFilter = this.microservices.filter(d => {
       return d.name.indexOf(term) >= 0;
     });
   }
 
-  refresh(){
+  refresh() {
     this.microserviceAction.searchMicroservices();
   }
 
@@ -53,10 +58,4 @@ export class MicroservicesComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.microserviceSub.unsubscribe();
   }
-
-  toggleExpandRow(e, row) {
-    e.preventDefault();
-    this.table.toggleExpandRow(row);
-  }
-
 }

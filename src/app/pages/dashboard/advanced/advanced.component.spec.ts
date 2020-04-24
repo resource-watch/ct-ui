@@ -5,7 +5,7 @@ import { AdvancedComponent } from './advanced.component';
 
 describe('Component: Advanced', () => {
   it('should create an instance', () => {
-    let component = new AdvancedComponent();
+    let component = new AdvancedComponent(null, null);
     expect(component).toBeTruthy();
   });
 });

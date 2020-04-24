@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { TokenService } from '../../services/auth.service';
+import {Component} from '@angular/core';
+import {TokenService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-menu',
@@ -8,9 +8,10 @@ import { TokenService } from '../../services/auth.service';
 })
 export class MenuComponent {
 
-  constructor(private tokenService: TokenService) { }
+  constructor(private tokenService: TokenService) {
+  }
 
-  logout(e){
+  logout(e) {
     this.tokenService.logout();
   }
 

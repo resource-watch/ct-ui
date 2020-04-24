@@ -1,4 +1,4 @@
-import { IEndpoint } from './../models/endpoint';
+import {IEndpoint} from './../models/endpoint';
 import * as endpoint from '../actions/endpoint';
 
 

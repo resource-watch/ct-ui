@@ -1,11 +1,10 @@
 /* tslint:disable:no-unused-variable */
 
-import { TestBed, async } from '@angular/core/testing';
-import { UsersComponent } from './users.component';
+import {UsersComponent} from './users.component';
 
 describe('Component: Users', () => {
   it('should create an instance', () => {
-    let component = new UsersComponent();
+    let component = new UsersComponent(null, null, null);
     expect(component).toBeTruthy();
   });
 });

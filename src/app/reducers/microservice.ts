@@ -1,4 +1,4 @@
-import { IMicroservice } from './../models/microservice';
+import {IMicroservice} from './../models/microservice';
 import * as microservice from '../actions/microservice';
 
 

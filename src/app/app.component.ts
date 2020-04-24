@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { TokenService } from './services/auth.service';
-import { URLSearchParams } from "@angular/http";
-import { Router, ActivatedRoute } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {TokenService} from './services/auth.service';
+import {HttpParams} from '@angular/common/http';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -25,10 +25,11 @@ export class AppComponent implements OnInit {
     position: ['right', 'top']
   };
 
-  constructor(private tokenService: TokenService, private router: Router, private active: ActivatedRoute) { }
+  constructor(private tokenService: TokenService, private router: Router, private active: ActivatedRoute) {
+  }
 
   ngOnInit() {
-    let params = new URLSearchParams(window.location.search.substring(1, window.location.search.length));
+    let params = new HttpParams({fromString: window.location.search.substring(1, window.location.search.length)});
     let token = params.get('token');
     if (token) {
       this.tokenService.setToken(token);

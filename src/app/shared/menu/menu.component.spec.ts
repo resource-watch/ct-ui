@@ -1,11 +1,10 @@
 /* tslint:disable:no-unused-variable */
 
-import { TestBed, async } from '@angular/core/testing';
-import { MenuComponent } from './menu.component';
+import {MenuComponent} from './menu.component';
 
 describe('Component: Menu', () => {
   it('should create an instance', () => {
-    let component = new MenuComponent();
+    let component = new MenuComponent(null);
     expect(component).toBeTruthy();
   });
 });

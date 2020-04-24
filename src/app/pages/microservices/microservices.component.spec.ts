@@ -5,7 +5,7 @@ import { MicroservicesComponent } from './microservices.component';
 
 describe('Component: Microservices', () => {
   it('should create an instance', () => {
-    let component = new MicroservicesComponent();
+    let component = new MicroservicesComponent(null, null);
     expect(component).toBeTruthy();
   });
 });

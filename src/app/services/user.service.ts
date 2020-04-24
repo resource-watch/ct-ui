@@ -1,29 +1,29 @@
-import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import { environment } from '../../environments/environment';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../environments/environment';
 
 @Injectable()
 export class UserService {
 
-  static BASE_URL: string = `${environment.apiUrl}`;
+  static BASE_URL = `${environment.apiUrl}`;
 
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
   }
 
-  getUsers(){
+  getUsers() {
     let url = `${UserService.BASE_URL}/auth/user`;
-    
-    return this.http.get(url).map(res => res.json() || []);
+
+    return this.http.get(url)
   }
 
-  updateUser(id, user){
+  updateUser(id, user) {
     let url = `${UserService.BASE_URL}/auth/user/${id}`;
-    return this.http.patch(url, user).map(res => res.json() || {});
+    return this.http.patch(url, user)
   }
 
-  createUser(user){
+  createUser(user) {
     let url = `${UserService.BASE_URL}/auth/sign-up`;
-    return this.http.post(url, user).map(res => res.json() || {});
+    return this.http.post(url, user)
   }
 
 }

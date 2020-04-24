@@ -1,5 +1,5 @@
-import { IPlugin } from './../../models/plugin';
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {IPlugin} from './../../models/plugin';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-plugin',
@@ -8,17 +8,18 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class PluginComponent implements OnInit {
 
-  @Input() plugin:IPlugin
+  @Input() plugin: IPlugin
   @Output() toggleActive = new EventEmitter();
   @Output() flushCache = new EventEmitter();
   @Output() edit = new EventEmitter();
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
-  toggleActivePlugin(active) {
+  toggleActivePlugin(active) {
     this.toggleActive.emit(active);
   }
 
@@ -26,7 +27,7 @@ export class PluginComponent implements OnInit {
     this.flushCache.emit();
   }
 
-  editPlugin(){
+  editPlugin() {
     this.edit.emit();
   }
 

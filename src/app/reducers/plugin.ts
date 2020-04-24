@@ -1,4 +1,4 @@
-import { IPlugin } from './../models/plugin';
+import {IPlugin} from './../models/plugin';
 import * as plugin from '../actions/plugin';
 
 

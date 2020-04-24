@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-select',
@@ -11,12 +11,13 @@ export class SelectComponent implements OnInit {
   @Input() value = ''
   @Output() update = new EventEmitter();
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
-  changeEvent(event, value){
+  changeEvent(event, value) {
     this.update.emit(value);
   }
 

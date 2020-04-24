@@ -1,32 +1,37 @@
-import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import { environment } from '../../environments/environment';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../environments/environment';
+
+export interface CheckLogged {
+  id: string;
+  name: string;
+}
 
 @Injectable()
 export class AuthService {
 
-  static BASE_URL: string = `${environment.apiUrl}/auth`;
+  static BASE_URL = `${environment.apiUrl}/auth`;
 
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
   }
 
   logout(): any {
     localStorage.removeItem('username');
   }
 
-  isLoggedIn(): Promise<any> {   
-    return this.http.get(`${AuthService.BASE_URL}/check-logged`).toPromise();    
+  isLoggedIn() {
+    const foo = this.http.get<CheckLogged>(`${AuthService.BASE_URL}/check-logged`);
+    return foo;
   }
 
   generateToken() {
-    return this.http.get(`${AuthService.BASE_URL}/generate-token`).map(res => res.json());
+    return this.http.get(`${AuthService.BASE_URL}/generate-token`);
   }
 }
 
 @Injectable()
 export class TokenService {
-  
+
   constructor() {
   }
 
@@ -42,10 +47,10 @@ export class TokenService {
   setToken(token: string) {
     localStorage.setItem('token', token);
   }
-  
+
 }
 
-export var AUTH_PROVIDERS: Array<any> = [
-  { provide: TokenService, useClass: TokenService },
-  { provide: AuthService, useClass: AuthService }
+export const AUTH_PROVIDERS: Array<any> = [
+  {provide: TokenService, useClass: TokenService},
+  {provide: AuthService, useClass: AuthService}
 ];

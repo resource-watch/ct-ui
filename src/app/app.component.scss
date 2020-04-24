@@ -29,11 +29,11 @@
       width: 100%;
 
       @media #{$mq-tablet} {
-        width: calc(100% * (1/2) - 20px);
+        width: calc(100% * (1 / 2) - 20px);
       }
 
       @media #{$mq-laptop} {
-        width: calc(100% * (1/3) - 20px);
+        width: calc(100% * (1 / 3) - 20px);
       }
     }
   }

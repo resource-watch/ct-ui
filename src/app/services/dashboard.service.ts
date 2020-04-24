@@ -1,38 +1,38 @@
-import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import { environment } from '../../environments/environment';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../environments/environment';
 
 @Injectable()
 export class DashboardService {
 
-  static BASE_URL: string = `${environment.apiUrl}`;
+  static BASE_URL = `${environment.apiUrl}`;
 
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
   }
 
-  countRequestToday(){
-    let url = `${DashboardService.BASE_URL}/api/v1/stadistic/countRequestToday`;    
-    return this.http.get(url).map(res => res.json() || []);
+  countRequestToday() {
+    let url = `${DashboardService.BASE_URL}/api/v1/statistic/countRequestToday`;
+    return this.http.get(url);
   }
 
-  countRequestLastWeek(){
-    let url = `${DashboardService.BASE_URL}/api/v1/stadistic/countRequestLastWeek`;    
-    return this.http.get(url).map(res => res.json() || []);
+  countRequestLastWeek() {
+    let url = `${DashboardService.BASE_URL}/api/v1/statistic/countRequestLastWeek`;
+    return this.http.get(url);
   }
 
-  countRequestTodayByCountry(){
-    let url = `${DashboardService.BASE_URL}/api/v1/stadistic/countRequestTodayByCountry`;    
-    return this.http.get(url).map(res => res.json() || []);
+  countRequestTodayByCountry() {
+    let url = `${DashboardService.BASE_URL}/api/v1/statistic/countRequestTodayByCountry`;
+    return this.http.get(url);
   }
 
-  avgByRequest(from, to){
-    let url = `${DashboardService.BASE_URL}/api/v1/stadistic/avgByRequest?from=${from}&to=${to}`;    
-    return this.http.get(url).map(res => res.json() || []);
+  avgByRequest(from, to) {
+    let url = `${DashboardService.BASE_URL}/api/v1/statistic/avgByRequest?from=${from}&to=${to}`;
+    return this.http.get(url);
   }
 
-  requestByDay(from, to){
-    let url = `${DashboardService.BASE_URL}/api/v1/stadistic/requestByDay?from=${from}&to=${to}`;    
-    return this.http.get(url).map(res => res.json() || []);
+  requestByDay(from, to) {
+    let url = `${DashboardService.BASE_URL}/api/v1/statistic/requestByDay?from=${from}&to=${to}`;
+    return this.http.get(url);
   }
 
 }

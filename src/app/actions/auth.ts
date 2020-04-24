@@ -1,8 +1,8 @@
-import { NotificationAction } from './notification';
-import { AuthService } from './../services/auth.service';
-import { Injectable } from '@angular/core';
-import { Action, Store } from '@ngrx/store';
-import { State } from '../reducers';
+import {NotificationAction} from './notification';
+import {AuthService} from './../services/auth.service';
+import {Injectable} from '@angular/core';
+import {Action, Store} from '@ngrx/store';
+import {State} from '../reducers';
 
 
 export enum AuthActions {
@@ -12,7 +12,8 @@ export enum AuthActions {
 export class GenerateTokenAction implements Action {
   type = AuthActions[AuthActions.AUTH_GENERATE_TOKEN];
 
-  constructor(public payload: any) { }
+  constructor(public payload: any) {
+  }
 }
 
 
@@ -21,11 +22,12 @@ export type Actions = GenerateTokenAction;
 @Injectable()
 export class AuthAction {
 
-  constructor(private authService: AuthService, private store: Store<State>, private notificationAction: NotificationAction){}
+  constructor(private authService: AuthService, private store: Store<State>, private notificationAction: NotificationAction) {
+  }
 
-  generateToken(){
-    this.authService.generateToken().subscribe(data => {
-      this.store.dispatch(new GenerateTokenAction(data.token));
+  generateToken() {
+    this.authService.generateToken().subscribe((data: Object) => {
+      this.store.dispatch(new GenerateTokenAction(data['token']));
       this.notificationAction.info('Token generated successfully');
     }, () => this.notificationAction.error('Error generating token'));
   }

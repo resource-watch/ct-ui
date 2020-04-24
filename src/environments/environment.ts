@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://staging-api.globalforestwatch.org'
+  apiUrl: 'http://localhost:9000'
 };
