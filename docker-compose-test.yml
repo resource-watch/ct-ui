@@ -21,13 +21,5 @@ services:
       FASTLY_APIKEY: foo
       FASTLY_SERVICEID: bar
     command: test
-    depends_on:
-      - mongo
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-
-  mongo:
-    image: mongo:3.6.13
-    command: --smallfiles
-    ports:
-      - "27017"

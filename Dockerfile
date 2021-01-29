@@ -14,14 +14,17 @@ RUN yarn global add --unsafe-perm grunt-cli bunyan pm2
 RUN mkdir -p /opt/$NAME
 COPY package.json /opt/$NAME/package.json
 COPY yarn.lock /opt/$NAME/yarn.lock
-RUN cd /opt/$NAME && yarn
+COPY angular.json /opt/$NAME/angular.json
+COPY tsconfig.json /opt/$NAME/tsconfig.json
+COPY tsconfig.spec.json /opt/$NAME/tsconfig.spec.json
+COPY karma.conf.js /opt/$NAME/karma.conf.js
+RUN cd /opt/$NAME && yarn install
 
 COPY entrypoint.sh /opt/$NAME/entrypoint.sh
-COPY config /opt/$NAME/config
 
 WORKDIR /opt/$NAME
 
-COPY ./app /opt/$NAME/app
+COPY ./src /opt/$NAME/src
 RUN chown -R $USER:$USER /opt/$NAME
 
 # Tell Docker we are going to use this ports
