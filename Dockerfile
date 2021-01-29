@@ -9,9 +9,11 @@ RUN apk update && apk upgrade && \
 
 RUN addgroup $USER && adduser -s /bin/bash -D -G $USER $USER
 
-RUN yarn global add --unsafe-perm grunt-cli bunyan pm2
+RUN yarn global add --unsafe-perm grunt-cli bunyan pm2 bower
 
 RUN mkdir -p /opt/$NAME
+COPY bower.json /opt/$NAME/bower.json
+COPY .bowerrc /opt/$NAME/.bowerrc
 COPY package.json /opt/$NAME/package.json
 COPY yarn.lock /opt/$NAME/yarn.lock
 COPY angular.json /opt/$NAME/angular.json
@@ -19,6 +21,7 @@ COPY tsconfig.json /opt/$NAME/tsconfig.json
 COPY tsconfig.spec.json /opt/$NAME/tsconfig.spec.json
 COPY karma.conf.js /opt/$NAME/karma.conf.js
 RUN cd /opt/$NAME && yarn install
+RUN cd /opt/$NAME && bower install
 
 COPY entrypoint.sh /opt/$NAME/entrypoint.sh
 
