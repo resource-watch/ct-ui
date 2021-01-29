@@ -23,7 +23,9 @@ spec:
         name: ct-ui
     spec:
       containers:
-        - image: gfwdockerhub/ct-ui
+        - args:
+            - start
+          image: gfwdockerhub/ct-ui
           imagePullPolicy: Always
           name: ct-ui
           ports:
