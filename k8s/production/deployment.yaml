@@ -4,6 +4,7 @@ metadata:
   labels:
     name: ct-ui
   name: ct-ui
+  namespace: gateway
 spec:
   progressDeadlineSeconds: 2147483647
   replicas: 1
