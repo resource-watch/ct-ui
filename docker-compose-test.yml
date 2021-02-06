@@ -3,23 +3,13 @@ services:
   test:
     build: .
     ports:
-      - "9000:9000"
-    container_name: control-tower-test
+      - "4200:4200"
+    container_name: ct-ui-test
     environment:
       NODE_ENV: test
-      SESSION_KEY: test
-      PORT: 9000
+      PORT: 4200
       LOGGER_TYPE: console
-      DEBUG: redis-cache-plugin
       NODE_PATH: app/src
-      EXEC_MIGRATION: 'true'
-      JWT_SECRET: mysecret
-      COOKIE_DOMAIN: mymachine
-      PUBLIC_URL: http://localhost:9000
-      SPARKPOST_KEY: fakeSparkpostKey
-      MONGO_PORT_27017_TCP_ADDR: mongo
-      FASTLY_APIKEY: foo
-      FASTLY_SERVICEID: bar
     command: test
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock

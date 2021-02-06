@@ -4,12 +4,13 @@ metadata:
   labels:
     name: ct-ui
   name: ct-ui
+  namespace: gateway
 spec:
   type: NodePort
   ports:
     - name: http
       protocol: TCP
-      port: 4200
-      targetPort: 80
+      port: 80
+      targetPort: 4200
   selector:
     name: ct-ui

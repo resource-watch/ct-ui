@@ -1,8 +1,8 @@
 FROM node:12-alpine
 MAINTAINER info@vizzuality.com
 
-ENV NAME control-tower
-ENV USER control_tower
+ENV NAME ct-ui
+ENV USER ct-ui
 
 RUN apk update && apk upgrade && \
     apk add --no-cache --update bash git openssh python alpine-sdk

@@ -3,8 +3,8 @@ services:
   develop:
     build: .
     ports:
-      - "9000:9000"
-    container_name: control-tower
+      - "4200:4200"
+    container_name: ct-ui
     env_file:
       - dev.env
     command: develop
